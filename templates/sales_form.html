@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard</title>
+    <script>
+        function calculateSavings() {
+            const sale = parseFloat(document.getElementById('sale').value) || 0;
+            let totalExpenses = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const expense = parseFloat(document.getElementById(`expense${i}`).value) || 0;
+                totalExpenses += expense;
+            }
+
+            const savings = sale - totalExpenses;
+            document.getElementById('savings').innerText = `Savings: $${savings.toFixed(2)}`;
+            document.getElementById('savingsHidden').value = savings.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <form action="/submit" method="post" oninput="calculateSavings()">
+        <h2>Today's Sales Data</h2>
+        <label for="sale">Total Sale</label>
+        <input type="number" id="sale" name="sale" placeholder="Enter total sale" required>
+
+        <h3>Expenses</h3>
+        <label>Enter up to 10 expense values:</label>
+        <div>
+            <input type="number" id="expense1" name="expense1" placeholder="Expense 1">
+            <input type="number" id="expense2" name="expense2" placeholder="Expense 2">
+            <input type="number" id="expense3" name="expense3" placeholder="Expense 3">
+            <input type="number" id="expense4" name="expense4" placeholder="Expense 4">
+            <input type="number" id="expense5" name="expense5" placeholder="Expense 5">
+            <input type="number" id="expense6" name="expense6" placeholder="Expense 6">
+            <input type="number" id="expense7" name="expense7" placeholder="Expense 7">
+            <input type="number" id="expense8" name="expense8" placeholder="Expense 8">
+            <input type="number" id="expense9" name="expense9" placeholder="Expense 9">
+            <input type="number" id="expense10" name="expense10" placeholder="Expense 10">
+        </div>
+
+        <div id="savings">Savings: $0.00</div>
+        <input type="hidden" id="savingsHidden" name="savings">
+
+        <button type="submit">Submit Data</button>
+    </form>
+</body>
+</html>
